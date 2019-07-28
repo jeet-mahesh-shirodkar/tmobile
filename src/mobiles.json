@@ -1,0 +1,68 @@
+[
+    {
+    "Id":1,
+    "Name":"Samsung",
+    "Ram" : "2gb",
+    "Camera":{
+        "Front":13,
+        "Back":13
+    },
+    "Price":120,
+    "Battery":"3000mah"
+    },
+    {
+        "Id":2,
+        "Name":"Apple",
+        "Ram" : "3gb",
+        "Camera":{
+            "Front":13,
+            "Back":20
+        },
+        "Price":200,
+        "Battery":"3000mah"
+    },
+    {
+        "Id":3,
+        "Name":"Mi",
+        "Ram" : "3gb",
+        "Camera":{
+            "Front":25,
+            "Back":20
+        },
+        "Price":140,
+        "Battery":"4000mah"
+        },
+        {
+            "Id":4,
+            "Name":"Realme",
+            "Ram" : "4gb",
+            "Camera":{
+                "Front":15,
+                "Back":16
+            },
+            "Price":100,
+            "Battery":"3500mah"
+            },
+            {
+                "Id":5,
+                "Name":"Redmi",
+                "Ram" : "8gb",
+                "Camera":{
+                    "Front":36,
+                    "Back":26
+                },
+                "Price":95,
+                "Battery":"4000mah"
+                },
+                {
+                    "Id":6,
+                    "Name":"lenvono",
+                    "Ram" : "6gb",
+                    "Camera":{
+                        "Front":12,
+                        "Back":14
+                    },
+                    "Price":80,
+                    "Battery":"2500mah"
+                }
+] 
