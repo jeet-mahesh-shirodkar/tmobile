@@ -1,5 +1,5 @@
 import React from 'react';
-import mobiles from './mobiles.json';
+import mobiles from '../mobiles.json';
 import './retailer.css';
 
 export default class Retailer extends React.Component {

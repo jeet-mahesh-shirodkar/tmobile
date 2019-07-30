@@ -1,7 +1,7 @@
 import React from 'react';
 // import logo from './logo.svg';
 import './App.css';
-import Retailer from './retailer.js'
+import Retailer from './Components/retailer.js'
 
 class App extends React.Component {
   render(){
