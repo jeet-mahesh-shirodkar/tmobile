@@ -2,22 +2,25 @@ import React from 'react';
 import mobiles from './mobiles.json';
 import './retailer.css';
 
-class Retailer extends React.Component {
+export default class Retailer extends React.Component {
     constructor(props){
         super(props);
         this.state=({
             mobiles:mobiles,
+            mobileThree:'',
             mobileTwo:'',   
             mobileOne:'',
             mobileOneList:[],
             mobileTwoList:[],
-            oneMores:[1],
+            mobileThreeList:[],
+            oneMores:[],
             notification :"",
-            flag:true
+            // flag:true
         })
         // this.displayMobileList=this.displayMobileList.bind(this);
         this.mobileOneHandler=this.mobileOneHandler.bind(this);
         this.mobileTwoHandler=this.mobileTwoHandler.bind(this);
+        this.mobileThreeHandler=this.mobileThreeHandler.bind(this);
         this.compare=this.compare.bind(this);
         this.oneMore=this.oneMore.bind(this);
     }
@@ -26,6 +29,12 @@ class Retailer extends React.Component {
         var mobileOnes=event.target.value
         this.setState({
             mobileOne:mobileOnes
+        })
+    }
+    mobileThreeHandler(event){
+        var mobileThrees =event.target.value
+        this.setState({
+            mobileThree:mobileThrees
         })
     }
     mobileTwoHandler(event){
@@ -41,6 +50,7 @@ class Retailer extends React.Component {
         const {mobiles} =this.state;
         var oneList = [];
         var twoList = [];
+        var threeList =[];
           for(var i=0;i<mobiles.length;i++){
                 // console.log(mobiles[i].Name)
                 if(this.state.mobileOne === mobiles[i].Name){
@@ -53,6 +63,9 @@ class Retailer extends React.Component {
                 if(this.state.mobileTwo === mobiles[i].Name){
                     twoList.push(mobiles[i])
                     console.log(twoList)
+                }
+                if(this.state.mobileThree === mobiles[i].Name){
+                    threeList.push(mobiles[i])
                 }   
           }
           this.setState({
@@ -60,6 +73,9 @@ class Retailer extends React.Component {
         }) 
         this.setState({
             mobileTwoList:twoList
+        })
+        this.setState({
+            mobileThreeList:threeList
         }) 
     }
    
@@ -70,12 +86,14 @@ class Retailer extends React.Component {
        const size = oneMoreAdd+1;
        console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",size)
        oneMoreAdd.push(size);
-       if(this.state.flag === true){
-       this.setState({
+       console.log("sssssssssssssssss",oneMoreAdd.length)
+       if(oneMoreAdd.length === 1){
+       
+        this.setState({
          oneMores:oneMoreAdd,
-         flag:false
        })
-    }
+
+       }
     else{
       var notifications ="You can compared only 3 Mobiles."
       this.setState({
@@ -93,12 +111,12 @@ class Retailer extends React.Component {
       var mobileOneLists = this.state.mobileOneList; 
       console.log(mobileOneLists) 
       var mobileTwoLists =this.state.mobileTwoList;
-
+      var mobileThreeLists =this.state.mobileThreeList;
       var oneMoreAdd = this.state.oneMores;
       console.log(oneMoreAdd)
 
   return (
-    <div className="retainer">
+    <div className="retailer">
     {
         <ol className="mobileNames">
             {
@@ -114,26 +132,30 @@ class Retailer extends React.Component {
         </ol>
     }
     <form onSubmit={this.compare}>
-     <input  type="text" value={this.state.mobileOne} onChange={this.mobileOneHandler}/>
-     <input  type="text" value={this.state.mobileTwo} onChange={this.mobileTwoHandler}/>
+     <input  type="text" className="im1" value={this.state.mobileOne} onChange={this.mobileOneHandler}/>
+     <input  type="text" className="im2" value={this.state.mobileTwo} onChange={this.mobileTwoHandler}/>
      <input  type="submit" value="Compare"/>
      </form>
-     <button onClick={this.oneMore}>Add One More</button>
+     <div className="oneMore">
+     <button onClick={this.oneMore} className="oneMorebtn">Add One More</button>
      <p>{this.state.notification}</p>
+     </div>
      <div className ="Input_Addon">
       {
-          oneMoreAdd.map(oneMoreAdd =>{
-              return(
-                  <input type="text"/>
+          oneMoreAdd.map(oneMoreAdd => {
+            if(oneMoreAdd.length === 1){ 
+            return(
+                  <input type="text" className="im3" value={this.state.mobileThree} onChange={this.mobileThreeHandler}/>
               );
-          })
+          }
+        })
       }
      </div>
      <div className="mobileList">
          <ol className="mobileOneList">
             {
                 mobileOneLists.map(mobileOneLists =>(
-                    <li key={1}>
+                    <li key={mobileOneLists.Id}>
                     <p>Name : {mobileOneLists.Name}</p>
                     <p>Ram : {mobileOneLists.Ram}</p>
                     <p>Camera Front : {mobileOneLists.Camera.Front}</p>
@@ -147,7 +169,7 @@ class Retailer extends React.Component {
          <ol>
              {
                  mobileTwoLists.map(mobileTwoLists =>(
-                     <li key={2}>
+                     <li key={mobileTwoLists.Id}>
                       <p>Name : {mobileTwoLists.Name}</p>
                       <p>Ram : {mobileTwoLists.Ram}</p>
                       <p>Camera Front : {mobileTwoLists.Camera.Front}</p>
@@ -158,9 +180,23 @@ class Retailer extends React.Component {
                  ))
              }
          </ol>
+         <ol>
+             {
+                 mobileThreeLists.map(mobileThreeLists =>(
+                     <li key={mobileThreeLists.Id}>
+                      <p>Name : {mobileThreeLists.Name}</p>
+                      <p>Ram : {mobileThreeLists.Ram}</p>
+                      <p>Camera Front : {mobileThreeLists.Camera.Front}</p>
+                      <p>Camera Back : {mobileThreeLists.Camera.Back}</p>
+                      <p>Price : {mobileThreeLists.Price}</p>
+                      <p>Battery : {mobileThreeLists.Battery}</p> 
+                     </li>
+                 ))
+             }
+         </ol>
      </div>
     </div>
   );
 }}
 
-export default Retailer;
+// export default Retailer;
